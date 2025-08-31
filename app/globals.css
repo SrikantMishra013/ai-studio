@@ -1,0 +1,681 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Midnight Neon theme */
+  --background: oklch(0.17 0.03 270); /* deep indigo slate */
+  --foreground: oklch(0.96 0.02 250); /* near-white with cool tint */
+  --card: oklch(0.2 0.03 270); /* slightly lighter than background */
+  --card-foreground: oklch(0.96 0.02 250);
+  --popover: oklch(0.2 0.03 270);
+  --popover-foreground: oklch(0.96 0.02 250);
+  --primary: oklch(0.7 0.22 300); /* vibrant violet */
+  --primary-foreground: oklch(0.15 0.02 270);
+  --secondary: oklch(0.78 0.13 210); /* soft sky */
+  --secondary-foreground: oklch(0.15 0.02 270);
+  --muted: oklch(0.24 0.02 270);
+  --muted-foreground: oklch(0.78 0.04 260);
+  --accent: oklch(0.74 0.18 190); /* teal/cyan accent */
+  --accent-foreground: oklch(0.15 0.02 270);
+  --destructive: oklch(0.62 0.25 25); /* warm red */
+  --destructive-foreground: oklch(0.98 0.01 270);
+  --border: oklch(0.26 0.02 270);
+  --input: oklch(0.22 0.02 270);
+  --ring: oklch(0.7 0.22 300 / 0.6);
+  --chart-1: oklch(0.7 0.22 300);
+  --chart-2: oklch(0.74 0.18 190);
+  --chart-3: oklch(0.78 0.13 210);
+  --chart-4: oklch(0.65 0.2 20);
+  --chart-5: oklch(0.74 0.16 340);
+  --radius: 0.5rem;
+  --sidebar: oklch(0.19 0.03 270);
+  --sidebar-foreground: oklch(0.96 0.02 250);
+  --sidebar-primary: oklch(0.22 0.03 270);
+  --sidebar-primary-foreground: oklch(0.96 0.02 250);
+  --sidebar-accent: oklch(0.74 0.18 190);
+  --sidebar-accent-foreground: oklch(0.15 0.02 270);
+  --sidebar-border: oklch(0.26 0.02 270);
+  --sidebar-ring: oklch(0.7 0.22 300 / 0.6);
+  --focus-ring: oklch(0.7 0.22 300 / 0.8);
+  --focus-offset: 3px;
+}
+
+.dark {
+  /* Inverted light variant for dark mode class if used */
+  --background: oklch(0.985 0.005 250);
+  --foreground: oklch(0.22 0.03 270);
+  --card: oklch(0.98 0.005 250);
+  --card-foreground: oklch(0.22 0.03 270);
+  --popover: oklch(0.98 0.005 250);
+  --popover-foreground: oklch(0.22 0.03 270);
+  --primary: oklch(0.46 0.18 300);
+  --primary-foreground: oklch(0.985 0.005 250);
+  --secondary: oklch(0.9 0.06 210);
+  --secondary-foreground: oklch(0.22 0.03 270);
+  --muted: oklch(0.94 0.01 250);
+  --muted-foreground: oklch(0.4 0.02 260);
+  --accent: oklch(0.86 0.09 190);
+  --accent-foreground: oklch(0.22 0.03 270);
+  --destructive: oklch(0.55 0.23 25);
+  --destructive-foreground: oklch(0.985 0.005 250);
+  --border: oklch(0.9 0.01 250);
+  --input: oklch(0.95 0.01 250);
+  --ring: oklch(0.46 0.18 300 / 0.6);
+  --chart-1: oklch(0.46 0.18 300);
+  --chart-2: oklch(0.62 0.12 210);
+  --chart-3: oklch(0.72 0.16 340);
+  --chart-4: oklch(0.6 0.14 20);
+  --chart-5: oklch(0.56 0.12 250);
+  --sidebar: oklch(0.97 0.005 250);
+  --sidebar-foreground: oklch(0.22 0.03 270);
+  --sidebar-primary: oklch(0.92 0.01 250);
+  --sidebar-primary-foreground: oklch(0.22 0.03 270);
+  --sidebar-accent: oklch(0.86 0.09 190);
+  --sidebar-accent-foreground: oklch(0.22 0.03 270);
+  --sidebar-border: oklch(0.9 0.01 250);
+  --sidebar-ring: oklch(0.46 0.18 300 / 0.6);
+  --focus-ring: oklch(0.46 0.18 300 / 0.8);
+  --focus-offset: 3px;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* AI Studio - Midnight Neon Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, 
+    var(--card) 0%, 
+    var(--muted) 50%, 
+    var(--card) 100%
+  );
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  box-shadow: inset 0 1px 3px var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    var(--primary) 0%, 
+    var(--accent) 50%, 
+    var(--primary) 100%
+  );
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  box-shadow: 
+    0 0 8px var(--primary),
+    0 0 16px var(--primary),
+    inset 0 1px 2px var(--background);
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    var(--accent) 0%, 
+    var(--primary) 50%, 
+    var(--accent) 100%
+  );
+  border-color: var(--accent);
+  box-shadow: 
+    0 0 12px var(--accent),
+    0 0 24px var(--accent),
+    inset 0 1px 2px var(--background);
+  transform: scale(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, 
+    var(--primary) 0%, 
+    var(--accent) 50%, 
+    var(--primary) 100%
+  );
+  box-shadow: 
+    0 0 16px var(--primary),
+    0 0 32px var(--primary),
+    inset 0 1px 3px var(--background);
+}
+
+::-webkit-scrollbar-corner {
+  background: linear-gradient(135deg, 
+    var(--card) 0%, 
+    var(--muted) 100%
+  );
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+/* Firefox scrollbar styling with enhanced colors */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--card);
+}
+
+/* Custom scrollbar for specific containers */
+.scrollbar-neon {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--card);
+}
+
+.scrollbar-neon::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, 
+    var(--accent) 0%, 
+    var(--primary) 50%, 
+    var(--accent) 100%
+  );
+  border-color: var(--accent);
+}
+
+.scrollbar-neon::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, 
+    var(--primary) 0%, 
+    var(--accent) 50%, 
+    var(--primary) 100%
+  );
+  border-color: var(--primary);
+}
+
+/* Force scrollbar visibility and enhance contrast */
+::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* Ensure sidebar is properly hidden on mobile and prevent duplication */
+@media (max-width: 1023px) {
+  aside[role="complementary"] {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  aside[role="complementary"] {
+    display: block !important;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted) !important;
+  border-radius: 6px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary) !important;
+  border-radius: 6px !important;
+  min-height: 20px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent) !important;
+}
+
+/* Ensure scrollbars are always visible */
+* {
+  scrollbar-width: auto !important;
+}
+
+/* Additional visibility for specific elements */
+.scrollbar-neon::-webkit-scrollbar-thumb {
+  background: var(--accent) !important;
+  border: 2px solid var(--card) !important;
+}
+
+.scrollbar-neon::-webkit-scrollbar-thumb:hover {
+  background: var(--primary) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Skip to main content link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Enhanced focus styles */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 4px;
+}
+
+/* Focus styles for interactive elements */
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 6px;
+  box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--focus-ring);
+}
+
+/* Enhanced focus for form elements */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px hsl(var(--background)), 0 0 0 5px var(--focus-ring);
+}
+
+/* Focus styles for cards and interactive containers */
+.card:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: 8px;
+  box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--focus-ring);
+}
+
+/* Enhanced text selection styling with high visibility */
+::selection {
+  background: oklch(0.7 0.22 300 / 0.6);
+  color: oklch(0.96 0.02 250);
+}
+
+::-moz-selection {
+  background: oklch(0.7 0.22 300 / 0.6);
+  color: oklch(0.96 0.02 250);
+}
+
+/* Webkit-specific selection styling for better cross-browser support */
+::-webkit-selection {
+  background: oklch(0.7 0.22 300 / 0.6);
+  color: oklch(0.96 0.02 250);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  *:focus-visible {
+    outline: 3px solid hsl(var(--foreground));
+    outline-offset: 2px;
+  }
+  
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 3px solid hsl(var(--foreground));
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Enhanced animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes focusPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 var(--focus-ring);
+  }
+  50% {
+    box-shadow: 0 0 0 4px var(--focus-ring);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.animate-focus-pulse {
+  animation: focusPulse 2s ease-in-out infinite;
+}
+
+/* Interactive element states */
+.interactive {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.interactive:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease-out;
+}
+
+.interactive:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  transform: translateY(-2px);
+}
+
+/* Button focus states */
+.btn-focus {
+  position: relative;
+}
+
+.btn-focus:focus-visible::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--focus-ring);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Card focus states */
+.card-focus {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-focus:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Form element focus states */
+.form-focus:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px hsl(var(--background)), 0 0 0 5px var(--focus-ring);
+}
+
+/* Utility classes for focus management */
+.focus-visible-only {
+  outline: none;
+}
+
+.focus-visible-only:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* High contrast focus indicators */
+@media (prefers-contrast: high) {
+  .focus-visible-only:focus-visible {
+    outline: 3px solid hsl(var(--foreground));
+    outline-offset: 2px;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Live regions for screen readers */
+[aria-live="polite"] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+[aria-live="assertive"] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Enhanced hover and focus states for buttons */
+.btn-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-enhanced:hover::before {
+  left: 100%;
+}
+
+.btn-enhanced:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  transform: scale(1.05);
+}
+
+/* Keyboard navigation indicators */
+.keyboard-nav .interactive:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  transform: scale(1.02);
+}
+
+/* Focus trap styles */
+.focus-trap {
+  outline: none;
+}
+
+.focus-trap:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Enhanced button states */
+.btn-primary:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--focus-ring);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  box-shadow: 0 0 0 4px hsl(var(--background)), 0 0 0 6px var(--focus-ring);
+}
+
+/* Enhanced card interactions */
+.card-interactive {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-interactive:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced form interactions */
+.form-interactive:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px hsl(var(--background)), 0 0 0 5px var(--focus-ring);
+}
+
+/* Accessibility improvements for images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img[alt] {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Enhanced link focus states */
+a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Enhanced select focus states */
+select:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px hsl(var(--background)), 0 0 0 5px var(--focus-ring);
+}
+
+/* Enhanced textarea focus states */
+textarea:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px hsl(var(--background)), 0 0 0 5px var(--focus-ring);
+}
+
+/* Override focus styles for prompt input to prevent multiple borders */
+.prompt-input-container textarea:focus-visible,
+.prompt-input-container select:focus-visible {
+  outline: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.prompt-input-container:focus-within {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 1px var(--primary), 0 0 0 3px var(--primary) !important;
+}
