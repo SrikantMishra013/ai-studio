@@ -98,27 +98,47 @@ export default function AIStudio() {
 
   const handleFileUpload = useCallback(
     async (file: File) => {
+      // Clear any previous errors
+      setError(null)
+
       // Size validation (<= 10MB)
       if (file.size > MAX_FILE_SIZE) {
-        setError("File size must be 10MB or less")
+        setError(`File size must be 10MB or less. Current size: ${(file.size / (1024 * 1024)).toFixed(1)}MB`)
         return
       }
 
       // Type validation (PNG or JPG only)
       if (!ALLOWED_MIME_TYPES.has(file.type)) {
-        setError("Only PNG or JPG images are allowed (max 10MB)")
+        setError(`Only PNG or JPG images are allowed. Received: ${file.type || 'unknown type'}`)
+        return
+      }
+
+      // Additional validation: check if file is actually an image
+      if (!file.type.startsWith('image/')) {
+        setError('Selected file is not an image')
         return
       }
 
       try {
-        setError(null)
         const resizedDataUrl = await resizeImage(file)
         setUploadedImage(resizedDataUrl)
+        
+        // Show success feedback
+        toast({
+          title: "Image uploaded successfully!",
+          description: "Your image has been processed and is ready for AI transformation.",
+          duration: 3000,
+        })
       } catch (err) {
-        setError("Failed to process image")
+        console.error('Image processing error:', err)
+        if (err instanceof Error) {
+          setError(`Failed to process image: ${err.message}`)
+        } else {
+          setError("Failed to process image. Please try again with a different image.")
+        }
       }
     },
-    [resizeImage],
+    [resizeImage, toast],
   )
 
 

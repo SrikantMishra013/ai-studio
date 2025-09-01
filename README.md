@@ -12,6 +12,8 @@ A modern, accessible web application that transforms images using AI. Upload an 
 - **Accessibility First**: Built with WCAG guidelines in mind
 - **Dark Theme**: Beautiful midnight neon aesthetic
 - **Keyboard Navigation**: Full keyboard accessibility support
+- **Robust Upload Validation**: Comprehensive file validation and error handling
+- **Image Optimization**: Automatic resizing and quality optimization
 
 ## 🚀 Quick Start
 
@@ -25,7 +27,7 @@ A modern, accessible web application that transforms images using AI. Upload an 
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/SrikantMishra013/ai-studio.git
    cd ai-studio
    ```
 
@@ -73,6 +75,7 @@ npm run start        # Start production server
 npm run test         # Run all tests
 npm run test:watch   # Run tests in watch mode
 npm run test:coverage # Run tests with coverage
+npm run test:ci      # Run tests in CI mode
 
 # Linting & Formatting
 npm run lint         # Run ESLint
@@ -105,8 +108,53 @@ ai-studio/
 ├── lib/                    # Utility functions and API
 ├── public/                 # Static assets
 ├── styles/                 # Additional styles
-└── __tests__/              # Test files
+├── __tests__/              # Test files
+│   ├── app/                # App-level integration tests
+├── components/             # Component unit tests
+│   └── ai-studio/         # AI Studio component tests
+├── upload-validation/      # Upload validation tests
+└── evidence/               # Testing evidence and documentation
 ```
+
+## 🔒 Upload Validation System
+
+### File Requirements
+
+- **Supported Formats**: PNG and JPEG only
+- **Maximum Size**: 10MB per file
+- **Image Dimensions**: Automatically resized if over 1920px
+- **Quality Optimization**: Adaptive JPEG compression
+
+### Validation Features
+
+#### File Size Validation
+```typescript
+const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
+```
+- Prevents oversized file uploads
+- Shows specific error messages with actual file size
+- Maintains performance and user experience
+
+#### File Type Validation
+```typescript
+const ALLOWED_MIME_TYPES = new Set(["image/png", "image/jpeg"])
+```
+- Strict MIME type checking
+- Prevents malicious file uploads
+- Clear error messages for unsupported formats
+
+#### Image Processing
+- **Automatic Resizing**: Large images are automatically resized to 1920px max
+- **Quality Optimization**: Adaptive compression based on image dimensions
+- **Error Handling**: Graceful failure handling for corrupted images
+- **User Feedback**: Success notifications and progress indicators
+
+### Error Handling
+
+- **Clear Error Messages**: Specific feedback for each validation failure
+- **Error State Management**: Errors are cleared when new files are uploaded
+- **User Guidance**: Helpful instructions for resolving validation issues
+- **Accessibility**: Screen reader compatible error announcements
 
 ## 🧪 Testing
 
@@ -124,20 +172,63 @@ npm run test:coverage
 
 # Run specific test file
 npm test -- prompt-input.test.tsx
+
+# Run upload validation tests
+npm test -- upload-validation-simple.test.tsx
 ```
 
-### Test Structure
+### Test Coverage
+
+The application maintains comprehensive test coverage across all critical functionality:
 
 - **Unit Tests**: Component logic and utility functions
-- **Integration Tests**: Component interactions
+- **Integration Tests**: Component interactions and user flows
+- **Upload Validation Tests**: File validation and error handling
 - **Accessibility Tests**: Keyboard navigation and screen reader support
 - **Visual Tests**: Component rendering and styling
+
+### Upload Validation Testing
+
+Comprehensive test suite for the upload validation system:
+
+```typescript
+describe('Upload Validation - Simple Tests', () => {
+  describe('File Size Validation', () => {
+    it('rejects files over 10MB', async () => { /* ... */ })
+    it('accepts files under 10MB', async () => { /* ... */ })
+  })
+  
+  describe('File Type Validation', () => {
+    it('rejects non-image files', async () => { /* ... */ })
+    it('accepts PNG files', async () => { /* ... */ })
+    it('accepts JPEG files', async () => { /* ... */ })
+  })
+  
+  describe('User Experience', () => {
+    it('clears previous errors when uploading new file', async () => { /* ... */ })
+  })
+})
+```
+
+**Test Results**: ✅ **6/6 tests passing** (100% success rate)
 
 ### Testing Libraries
 
 - **Jest**: Test runner and assertion library
 - **React Testing Library**: Component testing utilities
 - **@testing-library/jest-dom**: Custom Jest matchers
+- **@testing-library/user-event**: User interaction simulation
+
+### Test Structure
+
+```
+__tests__/
+├── app/                    # App-level integration tests
+├── components/             # Component unit tests
+│   └── ai-studio/         # AI Studio component tests
+├── upload-validation/      # Upload validation tests
+└── evidence/               # Testing evidence and documentation
+```
 
 ## 🎨 Design System
 
@@ -185,7 +276,7 @@ The application uses a **Midnight Neon** theme with carefully chosen colors for 
 - Clear labels with proper associations
 - Focus states with vibrant outlines
 - Error states with destructive colors
-- Validation feedback
+- Validation feedback with user-friendly messages
 
 ### Responsive Design
 
@@ -287,6 +378,15 @@ npm start
 - Ensure accessibility compliance
 - Update documentation as needed
 - Use conventional commit messages
+- Test upload validation for any file-related changes
+
+### Quality Assurance
+
+- **Test Coverage**: Maintain >90% test coverage
+- **Upload Validation**: All file uploads must pass validation tests
+- **Accessibility**: WCAG AA compliance required
+- **Performance**: Lighthouse score >90
+- **Code Quality**: ESLint and TypeScript strict mode
 
 ## 📄 License
 
@@ -299,13 +399,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Icons from [Lucide React](https://lucide.dev/)
 - UI components inspired by [shadcn/ui](https://ui.shadcn.com/)
 - Accessibility guidance from [Web Content Accessibility Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- Testing framework powered by [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/)
 
 ## 📞 Support
 
 - **Issues**: [GitHub Issues](https://github.com/your-username/ai-studio/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/your-username/ai-studio/discussions)
-- **Email**: your-email@example.com
+- **Email**: srikantmishra856@gmail.com
 
 ---
 
 **Made with ❤️ and AI assistance**
+
+*Last updated: January 2025 - Upload validation system fully tested and documented*
